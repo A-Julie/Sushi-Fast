@@ -19,7 +19,7 @@
     <tr> 
     <td>{{ laBox?.nom }}
         <li style="margin-bottom: 2em; font-weight: bold; font-size: 1.2em;;"></li>
-        <img class="card-img-top" [src]="'https://ldv-sushi-api.azurewebsites.net/api/image'+'/'+ laBox?.image" alt="{{ laBox?.nom }}" style="width: 20em;">
+        <img class="card-img-top" [src]="'http://localhost:8080/api/image'+'/'+ laBox?.image" alt="{{ laBox?.nom }}" style="width: 20em;">
         <ul style="font-weight: normal; font-size: normal;"></ul>
     </td>
     <div *ngFor="let aliments of laBox?.aliments">
