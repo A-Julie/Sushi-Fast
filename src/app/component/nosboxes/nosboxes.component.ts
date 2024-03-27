@@ -4,6 +4,7 @@ import { Panier } from '../../models/Panier';
 import { ManageBoxesService } from '../../service/manage-boxes.service';
 import { ManagePaniersService } from '../../service/manage-paniers.service';
 import { ActivatedRoute } from '@angular/router';
+import { LigneBoxes } from '../../models/LigneBoxes';
 
 @Component({
   selector: 'app-nosboxes',
@@ -23,10 +24,12 @@ export class NosboxesComponent {
 
   }
 
-  ajouter(uneBox:Boxes){
-    this.panierService.addBoxes(uneBox,1)
-   
+  ajouter(uneBox: Boxes) {
+    this.panierService.addBoxes(uneBox, 1)
+
   }
-    
+
+
+
 
 }

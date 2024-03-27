@@ -12,36 +12,36 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ManageBoxesService {
 
-  constructor(private http:HttpClient, private route: ActivatedRoute, private router: Router){
-    this.boxes=[]
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+    this.boxes = []
   }
   //Méthode qui affiche les boxes
-  public getBoxes () : Observable<any> {
+  public getBoxes(): Observable<any> {
     return this.http.get(environment.apiBaseUrl);
-    }
+  }
 
   getAllBoxes(): Boxes[] {
     return JSON.parse(localStorage.getItem('') || '[]');
-    }
+  }
 
-  
+
   //Méthode qui ajoute une/des boxe(s) au panier
 
-  public addBoxes(){}
+  public addBoxes() { }
 
   //Méthode qui supprime une boxe du panier
 
-  public deleteBoxe(){}
+  public deleteBoxe() { }
 
   //Méthode qui consulte le contenu du panier
 
-  public getPanier() : Panier[] {
+  public getPanier(): Panier[] {
     return JSON.parse(localStorage.getItem('') || '[]');
   }
 
   //Méthode qui calcule le prix du panier
 
-  public pricePanier(){}
+  public pricePanier() { }
 
   //Méthode qui consulter le statut du panier
 
@@ -50,12 +50,12 @@ export class ManageBoxesService {
 
   // Charger les détails de la boîte avec le nom correspondant depuis du backend.
 
-  nomBoxe: String=""
-  boxes : Array<Boxes>
+  nomBoxe: String = ""
+  boxes: Array<Boxes>
 
-  
+
   ngOnInit(): void {
-    
+
     this.route.params.subscribe(params => {
       this.nomBoxe = params['nom'];
     });

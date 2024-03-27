@@ -13,15 +13,20 @@ import { ManageBoxesService } from '../../service/manage-boxes.service';
 export class DetailsBoxesComponent {
 
   boxes: Array<Boxes>
-  laBox:Boxes|undefined
+  laBox: Boxes | undefined
   constructor(manageBoxesServices: ManageBoxesService, private route: ActivatedRoute) {
+
     this.boxes = []
+
     manageBoxesServices.getBoxes().subscribe((resultat) => {
+
       this.boxes = resultat
       const boxeId = Number(this.route.snapshot.paramMap.get('id'));
-     this.laBox= this.boxes.find((uneBox)=>uneBox.id==boxeId)
+      this.laBox = this.boxes.find((uneBox) => uneBox.id == boxeId)
       console.log(this.boxes)
+
     })
+    
   }
 
 

@@ -10,11 +10,15 @@ import { LigneBoxes } from '../models/LigneBoxes';
   providedIn: 'root'
 })
 export class ManagePaniersService {
+
   panier: Panier
+
   constructor() {
-    this.panier = JSON.parse(localStorage.getItem("panier") ?? "{'id':1,'listeDeBox':[],'statut':false}")
+
+    this.panier = JSON.parse(localStorage.getItem("panier") ?? JSON.stringify(new Panier(1, [], true)))
 
   }
+
   //méthode pour consulter le contenue du panier
   public getPanier() {
     return this.panier
@@ -43,6 +47,47 @@ export class ManagePaniersService {
   }
 
   //méthode pour supprimer une boxe du panier
+
+  public deleteBoxe(uneBox: Boxes) {
+
+
+    // Récupérer le panier actuel depuis le stockage local
+    let panier: Panier = JSON.parse(localStorage.getItem("panier") ?? JSON.stringify(new Panier(1, [], true)));
+
+    // Rechercher l'élément à supprimer dans le panier en utilisant son identifiant
+    const itemToDeleteId: number = uneBox.id; // ID de l'élément à supprimer
+    const index = panier.listeDeBoxe.findIndex(uneLigne => uneLigne.boxe.id === itemToDeleteId);
+
+    // Si l'élément est trouvé, le supprimer du panier
+    if (index !== -1) {
+      panier.listeDeBoxe.splice(index, 1);
+    }
+    this.panier = panier
+
+    // Mettre à jour le panier dans le stockage local avec la nouvelle version du panier
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+  }
+
+  public lowPanier(uneBox : Boxes){
+    // Récupérer le panier actuel depuis le stockage local
+    let panier: Panier = JSON.parse(localStorage.getItem("panier") ?? JSON.stringify(new Panier(1, [], true)));
+
+    // Rechercher l'élément à réduire dans le panier en utilisant son identifiant
+    const itemToReduceQte: number = uneBox.id; // ID de l'élément à réduire
+    const index = panier.listeDeBoxe.findIndex(uneLigne => uneLigne.boxe.id === itemToReduceQte);
+
+    for (let uneLigne of this.panier.listeDeBoxe) {
+      if (uneLigne.boxe.id == uneBox.id) {// Si oui alors tu modifie la quantite
+        uneLigne.qte--
+      }//Fin de la boucle
+    }
+
+    this.panier = panier
+
+    // Mettre à jour le panier dans le stockage local avec la nouvelle version du panier
+    localStorage.setItem("panier", JSON.stringify(panier));
+  }
 
 
   //méthode pour afficher statut du panier 

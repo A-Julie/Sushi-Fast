@@ -24,6 +24,7 @@
             </td>
             <td>{{ boxe.pieces}}</td>
             <td>{{ boxe.prix }}</td>
+            <td><button (click)="ajouter(boxe)">ajouter à votre panier</button></td>
             <td>
                 <div>
                     <a class="btn btn-primary" [routerLink]="'/details-boxes/'+boxe.id" routerLinkActive="active">Voir
