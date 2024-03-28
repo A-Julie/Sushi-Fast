@@ -21,7 +21,7 @@ export class PanierComponent {
   }
 
   reduire(uneLigne : LigneBoxes){
-    this.managePaniersService.lowPanier(uneLigne.qte)
+    this.managePaniersService.reducePanier(uneLigne.boxe)
     this.panier = this.managePaniersService.getPanier()
   }
 }

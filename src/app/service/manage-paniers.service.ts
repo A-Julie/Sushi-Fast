@@ -69,24 +69,26 @@ export class ManagePaniersService {
 
   }
 
-  public lowPanier(uneBox : Boxes){
-    // Récupérer le panier actuel depuis le stockage local
-    let panier: Panier = JSON.parse(localStorage.getItem("panier") ?? JSON.stringify(new Panier(1, [], true)));
+  public reducePanier(uneBox : Boxes){
+   
 
     // Rechercher l'élément à réduire dans le panier en utilisant son identifiant
     const itemToReduceQte: number = uneBox.id; // ID de l'élément à réduire
-    const index = panier.listeDeBoxe.findIndex(uneLigne => uneLigne.boxe.id === itemToReduceQte);
-
+    const index = this.panier.listeDeBoxe.findIndex(uneLigne => uneLigne.boxe.id === itemToReduceQte);
+    let qte=0
     for (let uneLigne of this.panier.listeDeBoxe) {
       if (uneLigne.boxe.id == uneBox.id) {// Si oui alors tu modifie la quantite
         uneLigne.qte--
+      qte=uneLigne.qte
       }//Fin de la boucle
     }
-
-    this.panier = panier
+    if(qte<1){
+          this.panier.listeDeBoxe.splice(index,1)
+    }
+  
 
     // Mettre à jour le panier dans le stockage local avec la nouvelle version du panier
-    localStorage.setItem("panier", JSON.stringify(panier));
+    localStorage.setItem("panier", JSON.stringify(this.panier));
   }
 
 
