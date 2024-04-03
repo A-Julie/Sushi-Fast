@@ -24,4 +24,8 @@ export class PanierComponent {
     this.managePaniersService.reducePanier(uneLigne.boxe)
     this.panier = this.managePaniersService.getPanier()
   }
+
+  prix(){
+    return this.managePaniersService.getPrix()
+  }
 }

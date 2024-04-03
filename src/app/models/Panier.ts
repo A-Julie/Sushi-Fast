@@ -14,12 +14,4 @@ export class Panier {
         this.statut = statut
     }
 
-    getPrix() {
-        let prix = 0
-        for (const uneLigne of this.listeDeBoxe) {
-            prix += uneLigne.boxe.prix * uneLigne.qte
-        }
-        return prix
-    }
-
 }
